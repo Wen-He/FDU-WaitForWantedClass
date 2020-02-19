@@ -13,7 +13,8 @@ function selectByNameLocation(targetName, targetLocation) {
                     ensureOrCancel = ensureButton[j].innerHTML;
                     if (ensureOrCancel == "确定") {
                         // alert("find");
-                        ensureButton[j].click();
+                        // ensureButton[j].click();
+                        console.log("find");
                         return true;
                     }
                 }
