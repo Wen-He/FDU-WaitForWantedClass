@@ -14,13 +14,14 @@ function selectByNameLocation(targetName, targetLocation) {
                     if (ensureOrCancel == "确定") {
                         // alert("find");
                         ensureButton[j].click();
-                        break;
+                        return true;
                     }
                 }
-                break;
+                // break;
             }
         }
     }
+    return false;
 }
 
 function sleep(delay) {
@@ -29,8 +30,7 @@ function sleep(delay) {
 }
 
 myTargetName = "中国特色社会主义理论与实践研究";
-myTargetLocation = "邯郸校区";
-// selectByNameLocation(myTargetName, myTargetLocation);
+myTargetLocation = "张江校区";
 
 timeOut = prompt("Set timeout (Second):");
 count = 0
@@ -43,8 +43,10 @@ if (timeOut > 0) {
 }
 
 function reload() {
-    selectByNameLocation(myTargetName, myTargetLocation);
-    setTimeout('reload()', 1000 * timeOut);
+    var needStop = this.selectByNameLocation(myTargetName, myTargetLocation);
+    if (!needStop) {
+        setTimeout('reload()', 1000 * timeOut);
+    }
     count++;
     console.log('每（'+timeOut+'）秒自动刷新, 刷新次数：' + count);
     fr4me='<frameset cols=\'*\'>\n<frame src=\''+current+'\'/>';
@@ -53,7 +55,4 @@ function reload() {
         write(fr4me);
         void(close())
     };
-
-    // sleep(2000);
-    // selectByNameLocation(myTargetName, myTargetLocation);
 }
